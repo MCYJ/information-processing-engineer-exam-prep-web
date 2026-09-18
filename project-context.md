@@ -38,3 +38,7 @@
 - 2026-09-19: project initialized from the proven static-site system and retargeted to KOR-0001 content, app assets and exact live Store state.
 - 2026-09-19: local build generated 34 indexable routes and 36 HTML files; metadata, links, exact package, disabled App Store state, `keep-all`, equal marketplace frames and stale-content rejection passed.
 - 2026-09-19: local HTTP QA returned 200 for all 34 sitemap routes and five key assets; an unknown route returned 404.
+- 2026-09-19: live Store recheck returned Google Play 200; exact-bundle Apple lookups returned zero public results in KR, US and GB.
+- 2026-09-19: GitHub Pages workflow run `35369290787` completed successfully.
+- 2026-09-19: production QA returned 200 for all 34 sitemap routes and five key assets after one transient 503 recheck; an unknown route returned 404.
+- 2026-09-19: production contains the exact Google Play package, no App Store URL, a localized disabled Apple control, global `word-break: keep-all` and the shared 194 × 75 px marketplace frame.
