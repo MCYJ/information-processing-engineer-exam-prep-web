@@ -24,11 +24,13 @@ for(const file of files){
 for(const path of ["index.html","404.html","sitemap.xml","robots.txt",".nojekyll","ko/index.html","en/index.html"])try{await access(join(out,path))}catch{fail.push(`missing ${path}`)}
 if(files.length!==36)fail.push(`expected 36 HTML, found ${files.length}`);
 const combined=(await Promise.all(files.map(file=>readFile(file,"utf8")))).join("\n");
-for(const required of ["app.mcyj.examprep.kor0001","Q-Net Information Processing Engineer","5과목 · 100문항","필답형 · 150분","과목 40 · 평균 60","App Store · 출시 예정"])if(!combined.includes(required))fail.push(`missing ${required}`);
-for(const forbidden of ["apps.apple.com","ToKL","90문항 · 130분","객관식 80 + 주관식 10","급수 121+","사회복지사","주택관리사보"])if(combined.includes(forbidden))fail.push(`stale content found: ${forbidden}`);
+for(const required of ["app.mcyj.examprep.kor0001","Q-Net Information Processing Engineer","5과목 · 100문항","필답형 · 150분","과목 40 · 평균 60"])if(!combined.includes(required))fail.push(`missing ${required}`);
+for(const forbidden of ["ToKL","90문항 · 130분","객관식 80 + 주관식 10","급수 121+","사회복지사","주택관리사보"])if(combined.includes(forbidden))fail.push(`stale content found: ${forbidden}`);
 const css=await readFile(join(out,"assets","styles.css"),"utf8");
 if(!css.includes("word-break:keep-all"))fail.push("keep-all rule missing");
 if(!css.includes("store-badge-frame-sync"))fail.push("Store badge frame rule missing");
 if(!css.includes("width:194px")||!css.includes("height:75px"))fail.push("194x75 Store frame missing");
 if(fail.length){console.error(fail.join("\n"));process.exit(1)}
 console.log(`Checked ${files.length} HTML files; metadata, links, page count, keep-all, Store state and equal badge frames passed.`);
+
+if(!(await readFile(join(out,"en/index.html"),"utf8")).includes("id6797310533"))throw new Error("Verified App Store identity missing");
